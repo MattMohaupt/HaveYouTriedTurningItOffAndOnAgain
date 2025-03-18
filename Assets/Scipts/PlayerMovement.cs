@@ -14,10 +14,19 @@ public class PlayerMovement : NetworkBehaviour
     // create a list of colors
     public List<Color> colors = new List<Color>();
     
+    [SerializeField] private float pickupForce = 150f;
 
+    [SerializeField] private Transform pickupPoint; // Empty object at the pickup area
+    [SerializeField] private float pickupRadius = 1f; // Radius for detection area
+    [SerializeField] private LayerMask carriableLayer; // Layer for carriable objects
+
+    // For tracking the held object
+    private GameObject heldObject;
+    // Position to hold the object
+    [SerializeField] private Transform holdPoint;
+    
     // getting the reference to the prefab
-    [SerializeField]
-    private GameObject spawnedPrefab;
+    [SerializeField] private GameObject spawnedPrefab;
     // save the instantiated prefab
     private GameObject instantiatedPrefab;
 
@@ -31,11 +40,10 @@ public class PlayerMovement : NetworkBehaviour
 
     private float rotationX = 0f;
 
-
     // Start is called before the first frame update
     void Start()
     {
-
+        carriableLayer = LayerMask.GetMask("Carriable");
     }
     // Update is called once per frame
     void Update()
@@ -63,7 +71,8 @@ public class PlayerMovement : NetworkBehaviour
         {
             moveDirection.x = +1f;
         }
-        transform.position += moveDirection * speed * Time.deltaTime;
+        Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
+        transform.position += worldMoveDirection * speed * Time.deltaTime;
         
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -98,6 +107,29 @@ public class PlayerMovement : NetworkBehaviour
             // as client can not spawn objects
             BulletSpawningServerRpc(cannon.transform.position, cannon.transform.rotation);
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (heldObject == null)
+            {
+                TryPickupObject();
+            }
+            else
+            {
+                DropObject();
+            }
+        }
+
+        // Vector3 rayOrigin = playerCamera.transform.position;
+        // Vector3 rayDirection = playerCamera.transform.forward;
+        
+        // Debug.DrawRay(rayOrigin, rayDirection * 10f, Color.red);
+        
+        // if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, 10f, carriableLayer))
+        // {
+        //     Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+        // }
+
     }
 
     // this method is called when the object is spawned
@@ -130,5 +162,41 @@ public class PlayerMovement : NetworkBehaviour
         newBullet.GetComponent<Rigidbody>().linearVelocity += Vector3.up * 2;
         newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward * 1500);
         // newBullet.GetComponent<NetworkObject>().Spawn(true);
+    }
+
+    private void TryPickupObject() {
+        Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius, carriableLayer);
+
+        if (colliders.Length > 0)
+        {
+            GameObject targetObject = colliders[0].gameObject;
+
+            if (targetObject.CompareTag("carriable"))
+            {
+                heldObject = targetObject;
+
+                Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+                rb.useGravity = false;
+                rb.isKinematic = true;
+
+                heldObject.transform.SetParent(holdPoint);
+                heldObject.transform.localPosition = Vector3.zero;
+                heldObject.transform.localRotation = Quaternion.identity;
+            }
+        }
+    }
+
+    private void DropObject() {
+        if (heldObject != null)
+        {
+            Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+            rb.useGravity = true;
+            rb.isKinematic = false;
+
+            heldObject.transform.SetParent(null);
+            rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
+
+            heldObject = null;
+        }
     }
 }
