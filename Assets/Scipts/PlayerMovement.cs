@@ -9,8 +9,11 @@ using Unity.Netcode;
 public class PlayerMovement : NetworkBehaviour
 {
     public float speed = 2f;
+    public float rotationSpeed = 200f;
+    public float mouseSensitivity = 3f;
     // create a list of colors
     public List<Color> colors = new List<Color>();
+    
 
     // getting the reference to the prefab
     [SerializeField]
@@ -25,6 +28,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private AudioListener audioListener;
     // reference to the camera
     [SerializeField] private Camera playerCamera;
+
+    private float rotationX = 0f;
 
 
     // Start is called before the first frame update
@@ -59,7 +64,15 @@ public class PlayerMovement : NetworkBehaviour
             moveDirection.x = +1f;
         }
         transform.position += moveDirection * speed * Time.deltaTime;
+        
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
+        transform.Rotate(0, mouseX, 0);
+
+        rotationX -= mouseY;
+        rotationX = Mathf.Clamp(rotationX, -30f, 60f);
+        playerCamera.transform.localEulerAngles = new Vector3(rotationX, 0, 0);
 
         // if I is pressed spawn the object 
         // if J is pressed destroy the object
