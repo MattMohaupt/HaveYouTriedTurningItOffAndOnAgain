@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 // adding namespaces
 using Unity.Netcode;
+using Unity.Multiplayer.Center.Common.Analytics;
+using System.Threading.Tasks;
 // because we are using the NetworkBehaviour class
 // NewtorkBehaviour class is a part of the Unity.Netcode namespace
 // extension of MonoBehaviour that has functions related to multiplayer
@@ -29,6 +31,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private GameObject spawnedPrefab;
     // save the instantiated prefab
     private GameObject instantiatedPrefab;
+
+    public GameObject fixedpc;
 
     public GameObject cannon;
     public GameObject bullet;
@@ -120,6 +124,15 @@ public class PlayerMovement : NetworkBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.F)){
+            if (heldObject == null){
+                TryInteraction();
+            }
+            else{
+                TryInteraction(heldObject);
+            }
+        }
+
         // Vector3 rayOrigin = playerCamera.transform.position;
         // Vector3 rayDirection = playerCamera.transform.forward;
         
@@ -165,7 +178,7 @@ public class PlayerMovement : NetworkBehaviour
     }
 
     private void TryPickupObject() {
-        Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius, carriableLayer);
+        Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
 
         if (colliders.Length > 0)
         {
@@ -199,4 +212,39 @@ public class PlayerMovement : NetworkBehaviour
             heldObject = null;
         }
     }
+
+    private async Task TryInteraction(GameObject heldobject = null) {
+    Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
+
+    if (colliders.Length > 0)
+    {
+        GameObject targetObject = null;
+        foreach (Collider col in colliders)
+        {
+            Debug.Log("Detected object: " + col.gameObject.name);
+            if(col.gameObject.name.Contains("brokenPC")){
+                targetObject = col.gameObject;
+                break;
+            }
+        }
+
+        if (targetObject != null)
+        {
+            Debug.Log("Interacting with: " + targetObject.name);
+            await Task.Delay(2000);
+            
+            targetObject.SetActive(false); // Hide the old object
+            Instantiate(fixedpc, targetObject.transform.position, targetObject.transform.rotation);
+            Debug.Log("Fixed PC spawned!");
+        }
+        else
+        {
+            Debug.Log("No brokenPC detected.");
+        }
+    }
+    else
+    {
+        Debug.Log("No objects found in radius.");
+    }
+}
 }
