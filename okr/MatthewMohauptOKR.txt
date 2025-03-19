@@ -1,5 +1,1 @@
-Create the customer queue system in which that will be the order of computers given to player: around 4/11/25 11pm about 5 hours
-
-Create the distinction between hardware and software related issues: around 4/18/25 11pm about 4 hours
-
-Decorate the playing area with objects, textures, images to make the level feel more real: around 4/25/25 11pm about 3 hours
+Have the ability to interact with an object and then turn it into a new object: around 3/18/25 at 11pm about 4 hours
