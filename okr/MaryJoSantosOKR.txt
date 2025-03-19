@@ -1,0 +1,4 @@
+Schedule and deliverable:
+    make level system and timer for each day -- 4/11/2025 by 11:59pm (estimate: 5 hours) 
+    create items that make fixing easier and purchase screen -- 4/18/2025 by 11:59pm (estimate: 5 hours)
+    create player models that allow more personalization for players, at least 2 -- 4/26/2025 by 11:59pm (estimate: 4 hours)
