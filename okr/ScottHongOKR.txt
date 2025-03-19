@@ -1,0 +1,5 @@
+Schedule and deliverable:
+
+ - Creating an outline for the project design document --  Mon by 11:59 pm (estimate: 1 hr)
+ - Implementing mouse view rotation for the software prototype -- Tues by 10 am (estimate: 2-3 hrs)
+ - Implementing grabbing object feature for the software prototype -- Tues by 10 am (estimate: 2-3 hrs)
