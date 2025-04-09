@@ -10,12 +10,12 @@ public class Animate : MonoBehaviour {
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W)) {
-            // Set the trigger value to True for the parameter Dance.
+            // Set the trigger value to True for the parameter Walk.
             anim.SetTrigger("Walk");
         }
 
         if (Input.GetKeyDown(KeyCode.E)) {
-            // Set the trigger value to True for the parameter Dance.
+            // Set the trigger value to True for the parameter PickUp.
             anim.SetTrigger("PickUp");
         }
     }
