@@ -37,6 +37,9 @@ public class PlayerMovement : NetworkBehaviour
     public GameObject cannon;
     public GameObject bullet;
 
+    //checking to make sure if a user is interacting with an item they are locked in place
+    public bool canMove = true;
+
     // reference to the camera audio listener
     [SerializeField] private AudioListener audioListener;
     // reference to the camera
@@ -59,25 +62,26 @@ public class PlayerMovement : NetworkBehaviour
 
         Vector3 moveDirection = new Vector3(0, 0, 0);
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            moveDirection.z = +1f;
+        if(canMove){
+            if (Input.GetKey(KeyCode.W))
+            {
+                moveDirection.z = +1f;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                moveDirection.z = -1f;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                moveDirection.x = -1f;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                moveDirection.x = +1f;
+            }
+            Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
+            transform.position += worldMoveDirection * speed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            moveDirection.z = -1f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            moveDirection.x = -1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            moveDirection.x = +1f;
-        }
-        Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
-        transform.position += worldMoveDirection * speed * Time.deltaTime;
-        
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
@@ -89,29 +93,30 @@ public class PlayerMovement : NetworkBehaviour
 
         // if I is pressed spawn the object 
         // if J is pressed destroy the object
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            //instantiate the object
-            instantiatedPrefab = Instantiate(spawnedPrefab);
-            // spawn it on the scene
-            instantiatedPrefab.GetComponent<NetworkObject>().Spawn(true);
-        }
+        // if (Input.GetKeyDown(KeyCode.I))
+        // {
+        //     //instantiate the object
+        //     instantiatedPrefab = Instantiate(spawnedPrefab);
+        //     // spawn it on the scene
+        //     instantiatedPrefab.GetComponent<NetworkObject>().Spawn(true);
+        // }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            //despawn the object
-            instantiatedPrefab.GetComponent<NetworkObject>().Despawn(true);
-            // destroy the object
-            Destroy(instantiatedPrefab);
-        }
+        // if (Input.GetKeyDown(KeyCode.J))
+        // {
+        //     //despawn the object
+        //     instantiatedPrefab.GetComponent<NetworkObject>().Despawn(true);
+        //     // destroy the object
+        //     Destroy(instantiatedPrefab);
+        // }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            // call the BulletSpawningServerRpc method
-            // as client can not spawn objects
-            BulletSpawningServerRpc(cannon.transform.position, cannon.transform.rotation);
-        }
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+        //     // call the BulletSpawningServerRpc method
+        //     // as client can not spawn objects
+        //     BulletSpawningServerRpc(cannon.transform.position, cannon.transform.rotation);
+        // }
 
+        // will check to see if there is an object the player can pick up
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (heldObject == null)
@@ -124,6 +129,7 @@ public class PlayerMovement : NetworkBehaviour
             }
         }
 
+        // will check to see if there is an object the player can interact with
         if (Input.GetKeyDown(KeyCode.F)){
             if (heldObject == null){
                 TryInteraction();
@@ -178,24 +184,67 @@ public class PlayerMovement : NetworkBehaviour
     }
 
     private void TryPickupObject() {
+        // Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
+
+        // if (colliders.Length > 0)
+        // {
+        //     GameObject targetObject = colliders[0].gameObject;
+
+        //     if (targetObject.CompareTag("carriable"))
+        //     {
+        //         heldObject = targetObject;
+
+        //         Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+        //         rb.useGravity = false;
+        //         rb.isKinematic = true;
+
+        //         heldObject.transform.SetParent(holdPoint);
+        //         heldObject.transform.localPosition = Vector3.zero;
+        //         heldObject.transform.localRotation = Quaternion.identity;
+        //     }
+        // }
+
         Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
 
         if (colliders.Length > 0)
         {
-            GameObject targetObject = colliders[0].gameObject;
+            GameObject targetObject = null;
 
-            if (targetObject.CompareTag("carriable"))
+            foreach (Collider col in colliders)
+            {
+                Debug.Log("Detected object for pickup: " + col.gameObject.name);
+                if (col.gameObject.CompareTag("carriable"))
+                {
+                    targetObject = col.gameObject;
+                    break; // Stop at the first carriable item
+                }
+            }
+
+            if (targetObject != null)
             {
                 heldObject = targetObject;
 
                 Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-                rb.useGravity = false;
-                rb.isKinematic = true;
+                if (rb != null)
+                {
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
+                }
 
                 heldObject.transform.SetParent(holdPoint);
                 heldObject.transform.localPosition = Vector3.zero;
                 heldObject.transform.localRotation = Quaternion.identity;
+
+                Debug.Log("Picked up: " + heldObject.name);
             }
+            else
+            {
+                Debug.Log("No carriable object detected.");
+            }
+        }
+        else
+        {
+            Debug.Log("No objects found in pickup radius.");
         }
     }
 
@@ -231,11 +280,13 @@ public class PlayerMovement : NetworkBehaviour
         if (targetObject != null)
         {
             Debug.Log("Interacting with: " + targetObject.name);
+            canMove = false;
             await Task.Delay(2000);
             
             targetObject.SetActive(false); // Hide the old object
             Instantiate(fixedpc, targetObject.transform.position, targetObject.transform.rotation);
             Debug.Log("Fixed PC spawned!");
+            canMove = true;
         }
         else
         {
