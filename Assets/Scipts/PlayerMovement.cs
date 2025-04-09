@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 // extension of MonoBehaviour that has functions related to multiplayer
 public class PlayerMovement : NetworkBehaviour
 {
-    public float speed = 2f;
+    public float speed = 10f;
     public float rotationSpeed = 200f;
     public float mouseSensitivity = 3f;
     // create a list of colors
@@ -19,7 +19,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float pickupForce = 150f;
 
     [SerializeField] private Transform pickupPoint; // Empty object at the pickup area
-    [SerializeField] private float pickupRadius = 1f; // Radius for detection area
+    [SerializeField] private float pickupRadius = 0.1f; // Radius for detection area
     [SerializeField] private LayerMask carriableLayer; // Layer for carriable objects
 
     // For tracking the held object
@@ -79,7 +79,7 @@ public class PlayerMovement : NetworkBehaviour
             {
                 moveDirection.x = +1f;
             }
-            Vector3 worldMoveDirection = transform.TransformDirection(moveDirection);
+            Vector3 worldMoveDirection = transform.TransformDirection(moveDirection.normalized);
             transform.position += worldMoveDirection * speed * Time.deltaTime;
         }
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;

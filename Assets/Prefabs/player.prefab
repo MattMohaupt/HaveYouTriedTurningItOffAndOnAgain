@@ -253,7 +253,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  speed: 2
+  speed: 5
   rotationSpeed: 200
   mouseSensitivity: 3
   colors:
@@ -307,7 +307,7 @@ MonoBehaviour:
   - {r: 0.5495316, g: 1, b: 0, a: 0}
   pickupForce: 150
   pickupPoint: {fileID: 7940898328047597081}
-  pickupRadius: 1
+  pickupRadius: 0.0001
   carriableLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -316,6 +316,7 @@ MonoBehaviour:
   fixedpc: {fileID: 8807631830298384811, guid: d742da2c9bcd2f348b95824328f9551f, type: 3}
   cannon: {fileID: 9090321652125285080}
   bullet: {fileID: 1308646620850921123, guid: 6071c5ce0abc62548bb5f2ae3d804f55, type: 3}
+  canMove: 1
   audioListener: {fileID: 4929820634659766398}
   playerCamera: {fileID: 5216914485926073765}
 --- !u!114 &606811382801918025

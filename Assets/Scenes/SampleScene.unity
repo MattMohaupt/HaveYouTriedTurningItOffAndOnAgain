@@ -1024,7 +1024,7 @@ MonoBehaviour:
   host_btn: {fileID: 448995642}
   client_btn: {fileID: 9181999}
   joinCodeText: {fileID: 747338591}
-  maxPlayers: 4
+  maxPlayers: 2
   joinCode: 
   joinCodeInputField: {fileID: 1074439295}
 --- !u!1 &747338589
