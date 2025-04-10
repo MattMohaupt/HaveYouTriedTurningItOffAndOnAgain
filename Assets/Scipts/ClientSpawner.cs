@@ -8,7 +8,7 @@ public class ClientSpawner : MonoBehaviour
     public Transform queueStartPoint; // where the waiting line begins
     public float spacing = 1.5f; // space between clients in the line
     public float spawnInterval; // time interval of client spawn (SET MANULLY in the Unity tool)
-
+    public int limit;
 
     private float timer = 0f;
 
@@ -32,12 +32,14 @@ public class ClientSpawner : MonoBehaviour
     // spawn client every 'spawnInterval' seconds
     void Update()
     {
-        timer += Time.deltaTime;
+        if (clientQueue.Count < limit) {
+            timer += Time.deltaTime;
 
-        if (timer >= spawnInterval)
-        {
-            SpawnClient();
-            timer = 0f;
+            if (timer >= spawnInterval)
+            {
+                SpawnClient();
+                timer = 0f;
+            }
         }
     }
 
