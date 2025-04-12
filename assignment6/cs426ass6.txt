@@ -1,0 +1,29 @@
+CS426 Assignment 6
+
+Group 19 
+
+Have You Tried Turning It Off and On Again?
+
+
+New 3d physics:
+	Added npc's with rigidbodies and colliders
+	Added walls so that the area is enclosed
+	Added laptop prefabs with rigidbodies, networking, colliders, weight
+	
+
+New lights:
+	Added a light to where the npc's spawn to replicate the doorway in an office and the light from the outside room
+	Added a light to where the npc's will drop off their computer to have a work bench there and a light will be needed when fixing computers
+	Add a new warm area light in order to replicate the sterile office look
+
+
+New AI:
+	Implemented a simple djikstra pathfinding to the NPC's on spawn so they can walk through the door and to the target location as spawning in isn't too complicated and people will just walk to their position in line (done by Scott Hong)
+	Added a fsm for the NPC's so they can wait for their turn in order to get their pc fixed and if it isn't fixed in time(30 seconds) then they will get mad and leave (done by Matthew Mohaupt)
+	Implemented an A* pathfinding for when they are leaving as the line of people waiting for their computers to get fixed needs to be dealt with carefully so they aren't moving through each other to leave (done by MaryJo)
+
+
+New Mecanim:
+	Added a walking animation because everyone walks (done by MaryJo)
+	Added and picking up animation because we have objects we will be able to pickup (done by Matthew Mohaupt)
+	Added an interaction animation because when fixing computers the character will need to look like they are fixing it (done by Scott Hong)
