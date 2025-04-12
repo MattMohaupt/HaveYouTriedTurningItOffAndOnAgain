@@ -9,14 +9,27 @@ public class Animate : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.W)) {
-            // Set the trigger value to True for the parameter Walk.
-            anim.SetTrigger("Walk");
+        bool isWalking = anim.GetBool("Walk");
+        bool isMoving = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W);
+
+        if (!isWalking && isMoving) {
+            // Set the bool value to true for the parameter Walk.
+            anim.SetBool("Walk", true);
+        }
+
+        if (isWalking && !isMoving) {
+            // Set bool value to false to stop walking animation
+            anim.SetBool("Walk", false);
         }
 
         if (Input.GetKeyDown(KeyCode.E)) {
             // Set the trigger value to True for the parameter PickUp.
             anim.SetTrigger("PickUp");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F)) {
+            // Set trigger value to True for parameter Use
+            anim.SetTrigger("Use");
         }
     }
 }
