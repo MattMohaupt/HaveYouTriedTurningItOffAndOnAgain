@@ -4,6 +4,8 @@ Group 19
 
 Have You Tried Turning It Off and On Again?
 
+Matthew Mohaupt, Scott Hong, MaryJo Santos
+
 
 New 3d physics:
 	Added npc's with rigidbodies and colliders
