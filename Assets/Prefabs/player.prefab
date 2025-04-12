@@ -307,13 +307,13 @@ MonoBehaviour:
   - {r: 0.5495316, g: 1, b: 0, a: 0}
   pickupForce: 150
   pickupPoint: {fileID: 7940898328047597081}
-  pickupRadius: 0.0001
+  pickupRadius: 1
   carriableLayer:
     serializedVersion: 2
     m_Bits: 8
   holdPoint: {fileID: 8187263012222883822}
   spawnedPrefab: {fileID: 5081360379083264405, guid: 7ae6246592a9eb64882e22c2720656dd, type: 3}
-  fixedpc: {fileID: 8807631830298384811, guid: d742da2c9bcd2f348b95824328f9551f, type: 3}
+  fixedpc: {fileID: 6261253163051834042, guid: dd1e0f46e3b5d674f800010fdc57e887, type: 3}
   cannon: {fileID: 9090321652125285080}
   bullet: {fileID: 1308646620850921123, guid: 6071c5ce0abc62548bb5f2ae3d804f55, type: 3}
   canMove: 1

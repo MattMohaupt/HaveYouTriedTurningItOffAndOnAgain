@@ -263,6 +263,11 @@ public class PlayerMovement : NetworkBehaviour
     }
 
     private async Task TryInteraction(GameObject heldobject = null) {
+
+        if(heldObject != null && heldObject.name.Contains("broken")){
+            return;
+        }
+
     Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
 
     if (colliders.Length > 0)
@@ -271,7 +276,7 @@ public class PlayerMovement : NetworkBehaviour
         foreach (Collider col in colliders)
         {
             Debug.Log("Detected object: " + col.gameObject.name);
-            if(col.gameObject.name.Contains("brokenPC")){
+            if(col.gameObject.name.Contains("broken")){
                 targetObject = col.gameObject;
                 break;
             }
