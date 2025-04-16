@@ -12,6 +12,10 @@ public class ClientMovement : MonoBehaviour
     public float moveSpeed = 2f;
     public float waitDuration = 30f;
     public float stoppingDistance = 0.1f;
+
+    // Private reference that will be set by ClientSpawner
+    private GameObject brokenPCPrefab; 
+    private GameObject droppedPC;
     
     [HideInInspector] public ClientState currentState = ClientState.WalkingToQueue;
     [HideInInspector] public float waitTimer = 0f;
@@ -78,6 +82,8 @@ public class ClientMovement : MonoBehaviour
     {
         currentState = ClientState.Waiting;
         waitTimer = 0f;
+
+        DropBrokenPC();
     }
 
     public void StartLeaving()
@@ -97,4 +103,39 @@ public class ClientMovement : MonoBehaviour
     {
         spawnPoint = point;
     }
+
+    public void DropBrokenPC()
+    {
+        if (brokenPCPrefab != null)
+        {
+            Vector3 dropPosition = transform.position + transform.forward * 1.5f;
+            droppedPC = Instantiate(brokenPCPrefab, dropPosition, Quaternion.identity);
+            
+            Debug.Log($"Spawned PC: {droppedPC.name} at {dropPosition}");
+            Debug.Log($"PC active: {droppedPC.activeSelf}, layer: {droppedPC.layer}");
+
+            Computer computer = droppedPC.GetComponent<Computer>();
+            if (computer != null)
+            {
+                computer.ownerClient = this;
+                computer.issueType = issue;
+                Debug.Log($"Computer component added! Issue: {computer.issueType}");
+            }
+            else
+            {
+                Debug.LogError("No Computer component found on prefab!");
+            }
+            
+            droppedPC.name = issue == 0 ? "brokenHW" : "brokenSW";
+        }
+    }
+
+
+    // Add this method to set the prefab reference
+    public void SetBrokenPCPrefab(GameObject prefab)
+    {
+        brokenPCPrefab = prefab;
+    }
+
+
 }

@@ -13,6 +13,8 @@ public class GameInfoManeger : MonoBehaviour
     [SerializeField] private GameObject gameUI;
     [SerializeField] private GameObject resultUI;
 
+    public static GameInfoManeger instance;
+
     private float currentTime;
     private bool isRunning = true;
 
@@ -60,6 +62,18 @@ public class GameInfoManeger : MonoBehaviour
     {
         money += amount;
         UpdateMoneyUI();
+    }
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     
 }

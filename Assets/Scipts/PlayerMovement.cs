@@ -263,63 +263,51 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    private async Task TryInteraction(GameObject heldobject = null) {
-
-        if(heldObject == null){
-            Debug.Log("Not holding an item");
-            return;
-        }
-
-    Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
-
-    if (colliders.Length > 0)
+    private async Task TryInteraction(GameObject heldobject = null)
     {
-        GameObject targetObject = null;
+        Debug.Log("--- STARTING INTERACTION CHECK ---");
+        Debug.Log($"Held object: {(heldObject ? heldObject.name : "null")}");
+        
+        Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
+        Debug.Log($"Found {colliders.Length} colliders in radius");
+
         foreach (Collider col in colliders)
         {
-            Debug.Log("Detected object: " + col.gameObject.name);
-            if(col.gameObject.name.Contains("broken")){
-                targetObject = col.gameObject;
-                break;
-            }
-        }
-
-        if (targetObject != null)
-        {
-            if (targetObject.name.Contains("SW") && heldObject.name.Contains("Battery")){
-                Debug.Log("Interacting with: " + targetObject.name);
-                canMove = false;
-                await Task.Delay(2000);
-                
-                targetObject.SetActive(false); // Hide the old object
-                Instantiate(fixedpc, targetObject.transform.position, targetObject.transform.rotation);
-                Debug.Log("Fixed PC spawned!");
-                canMove = true;
-            }
-            else if (targetObject.name.Contains("HW") && heldObject.name.Contains("Tools")){
-                Debug.Log("Interacting with: " + targetObject.name);
-                canMove = false;
-                await Task.Delay(2000);
-                
-                targetObject.SetActive(false); // Hide the old object
-                Instantiate(fixedpc, targetObject.transform.position, targetObject.transform.rotation);
-                Debug.Log("Fixed PC spawned!");
-                canMove = true;
-            }
-            else{
-                String debugger = "Not Right combo of items; interact="+targetObject.name+" held="+heldObject.name;
-                Debug.Log(debugger);
-            }
+            Debug.Log($"Checking: {col.gameObject.name} (Layer: {LayerMask.LayerToName(col.gameObject.layer)})");
             
+            Computer computer = col.GetComponent<Computer>();
+            if (computer != null)
+            {
+                Debug.Log($"Found Computer component! State: {computer.currentState}, Type: {computer.issueType}");
+                
+                if (heldObject != null)
+                {
+                    Debug.Log($"Held item: {heldObject.name}");
+                    bool correctCombo = (computer.issueType == 0 && heldObject.name.Contains("Tools")) || 
+                                    (computer.issueType == 1 && heldObject.name.Contains("Battery"));
+                    
+                    Debug.Log($"Combo check: {correctCombo}");
+                    
+                    if (correctCombo)
+                    {
+                        Debug.Log("Fixing computer...");
+                        canMove = false;
+                        await Task.Delay(2000);
+                        
+                        computer.FixComputer();
+                        // Destroy(heldObject);
+                        // heldObject = null;
+                        DropObject();
+                        canMove = true;
+                        return;
+                    }
+                }
+                else
+                {
+                    Debug.Log("No item held (need tool/battery)");
+                }
+            }
         }
-        else
-        {
-            Debug.Log("No brokenPC detected.");
-        }
+        Debug.Log("--- END INTERACTION CHECK ---");
     }
-    else
-    {
-        Debug.Log("No objects found in radius.");
-    }
-}
 }
