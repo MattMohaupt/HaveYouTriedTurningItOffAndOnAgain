@@ -55,5 +55,11 @@ public class GameInfoManeger : MonoBehaviour
         gameUI.SetActive(false);
         resultUI.SetActive(true);
     }
+
+    public void AddMoney(int amount)
+    {
+        money += amount;
+        UpdateMoneyUI();
+    }
     
 }
