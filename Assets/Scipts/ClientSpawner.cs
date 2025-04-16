@@ -31,6 +31,7 @@ public class ClientSpawner : MonoBehaviour
 
     void SpawnClient()
     {
+        // int randInd = Random.Range(0, clientPrefab.Length);     // should be either 0 or 1
         GameObject client = Instantiate(clientPrefab, spawnPoint.position, spawnPoint.rotation);
         ClientMovement clientMovement = client.GetComponent<ClientMovement>();
 
@@ -44,6 +45,7 @@ public class ClientSpawner : MonoBehaviour
         }
 
         // Set references
+        // clientMovement.setIssue(randInd);
         clientMovement.SetSpawnPoint(spawnPoint);
         clientMovement.SetQueueManager(queueManager);
 
