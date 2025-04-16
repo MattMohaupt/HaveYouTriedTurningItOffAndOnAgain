@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.Netcode;
 using Unity.Multiplayer.Center.Common.Analytics;
 using System.Threading.Tasks;
+using System;
 // because we are using the NetworkBehaviour class
 // NewtorkBehaviour class is a part of the Unity.Netcode namespace
 // extension of MonoBehaviour that has functions related to multiplayer
@@ -264,7 +265,8 @@ public class PlayerMovement : NetworkBehaviour
 
     private async Task TryInteraction(GameObject heldobject = null) {
 
-        if(heldObject != null && heldObject.name.Contains("broken")){
+        if(heldObject == null){
+            Debug.Log("Not holding an item");
             return;
         }
 
@@ -284,14 +286,31 @@ public class PlayerMovement : NetworkBehaviour
 
         if (targetObject != null)
         {
-            Debug.Log("Interacting with: " + targetObject.name);
-            canMove = false;
-            await Task.Delay(2000);
+            if (targetObject.name.Contains("SW") && heldObject.name.Contains("Battery")){
+                Debug.Log("Interacting with: " + targetObject.name);
+                canMove = false;
+                await Task.Delay(2000);
+                
+                targetObject.SetActive(false); // Hide the old object
+                Instantiate(fixedpc, targetObject.transform.position, targetObject.transform.rotation);
+                Debug.Log("Fixed PC spawned!");
+                canMove = true;
+            }
+            else if (targetObject.name.Contains("HW") && heldObject.name.Contains("Tools")){
+                Debug.Log("Interacting with: " + targetObject.name);
+                canMove = false;
+                await Task.Delay(2000);
+                
+                targetObject.SetActive(false); // Hide the old object
+                Instantiate(fixedpc, targetObject.transform.position, targetObject.transform.rotation);
+                Debug.Log("Fixed PC spawned!");
+                canMove = true;
+            }
+            else{
+                String debugger = "Not Right combo of items; interact="+targetObject.name+" held="+heldObject.name;
+                Debug.Log(debugger);
+            }
             
-            targetObject.SetActive(false); // Hide the old object
-            Instantiate(fixedpc, targetObject.transform.position, targetObject.transform.rotation);
-            Debug.Log("Fixed PC spawned!");
-            canMove = true;
         }
         else
         {
