@@ -27,6 +27,9 @@ public class NetworkManagerUI : MonoBehaviour
     // Awake() method is called and executed
     // Awake is always called before any Start functions.
 
+    [SerializeField] private GameObject startScreenUI;
+    [SerializeField] private GameObject gameScreenUI;
+
     private void Awake()
     {
         // add a listener to the host button
@@ -44,6 +47,11 @@ public class NetworkManagerUI : MonoBehaviour
             // NetworkManager.Singleton.StartClient();
             StartClientRelay(joinCodeInputField.text);
         });
+    }
+
+    private void RemoveStartingScreen() {
+        startScreenUI.SetActive(false);
+        gameScreenUI.SetActive(true);
     }
 
     private async void Start()
@@ -82,7 +90,9 @@ public class NetworkManagerUI : MonoBehaviour
         NetworkManager.Singleton.StartHost();
 
         // display the join code
-        joinCodeText.text = joinCode;
+        joinCodeText.text = "Join Code: " + joinCode;
+
+        RemoveStartingScreen();
     }
 
     // start client relay
@@ -107,6 +117,8 @@ public class NetworkManagerUI : MonoBehaviour
 
         //Start the client
         NetworkManager.Singleton.StartClient();
+
+        RemoveStartingScreen();
     }
 
 }

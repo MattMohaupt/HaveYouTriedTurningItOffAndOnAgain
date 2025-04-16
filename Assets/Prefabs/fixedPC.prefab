@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: -950776716673640120}
   - component: {fileID: -6550750501790185167}
   - component: {fileID: -352849966984286032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fixedPC
-  m_TagString: Untagged
+  m_TagString: carriable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
