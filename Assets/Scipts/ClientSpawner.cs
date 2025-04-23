@@ -8,6 +8,8 @@ public class ClientSpawner : MonoBehaviour
     public float spawnInterval = 5f;
     public int limit = 10;
 
+    public AudioSource newClient;
+
     private float timer = 0f;
 
     public GameObject brokenPCHW; // Reference to HW broken PC prefab
@@ -66,5 +68,8 @@ public class ClientSpawner : MonoBehaviour
         // Add to queue
         queueManager.AddClient(clientMovement);
         client.name = "Client_" + queueManager.GetClientCount();
+
+        // play sound to indicate there's a new client
+        newClient.Play();
     }
 }

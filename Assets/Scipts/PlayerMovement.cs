@@ -14,6 +14,11 @@ public class PlayerMovement : NetworkBehaviour
     public float speed = 10f;
     public float rotationSpeed = 200f;
     public float mouseSensitivity = 3f;
+
+    public AudioSource startComputerFix;
+
+    public AudioSource completeComputerFix;
+
     // create a list of colors
     public List<Color> colors = new List<Color>();
     
@@ -52,6 +57,8 @@ public class PlayerMovement : NetworkBehaviour
     void Start()
     {
         carriableLayer = LayerMask.GetMask("Carriable");
+        // startComputerFix = GameObject.Find("AttemptFix").GetComponent<AudioSource>();
+        // completeComputerFix = GameObject.Find("FixedComp").GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -269,6 +276,7 @@ public class PlayerMovement : NetworkBehaviour
     {
         Debug.Log("--- STARTING INTERACTION CHECK ---");
         Debug.Log($"Held object: {(heldObject ? heldObject.name : "null")}");
+        startComputerFix.Play();
         
         Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
         Debug.Log($"Found {colliders.Length} colliders in radius");
@@ -292,6 +300,8 @@ public class PlayerMovement : NetworkBehaviour
                     
                     if (correctCombo)
                     {
+                        startComputerFix.Stop();
+                        completeComputerFix.Play();
                         Debug.Log("Fixing computer...");
                         canMove = false;
                         await Task.Delay(2000);
@@ -310,6 +320,7 @@ public class PlayerMovement : NetworkBehaviour
                 }
             }
         }
+        startComputerFix.Stop();
         Debug.Log("--- END INTERACTION CHECK ---");
     }
 
