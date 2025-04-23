@@ -62,7 +62,7 @@ public class GameInfoManeger : MonoBehaviour
 
     public void AddMoney(int amount)
     {
-        addMoney.Play();
+        // addMoney.Play();
         money += amount;
         UpdateMoneyUI();
     }
