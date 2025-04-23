@@ -230,6 +230,7 @@ public class PlayerMovement : NetworkBehaviour
                 {
                     rb.useGravity = false;
                     rb.isKinematic = true;
+                    heldObject.GetComponent<Collider>().enabled = false;
                 }
 
                 heldObject.transform.SetParent(holdPoint);
@@ -255,6 +256,7 @@ public class PlayerMovement : NetworkBehaviour
             Rigidbody rb = heldObject.GetComponent<Rigidbody>();
             rb.useGravity = true;
             rb.isKinematic = false;
+            heldObject.GetComponent<Collider>().enabled = true;
 
             heldObject.transform.SetParent(null);
             rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
@@ -310,4 +312,5 @@ public class PlayerMovement : NetworkBehaviour
         }
         Debug.Log("--- END INTERACTION CHECK ---");
     }
+
 }

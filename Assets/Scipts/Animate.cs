@@ -6,6 +6,7 @@ public class Animate : MonoBehaviour {
     void Start() {
         // Get an instance of the Animator component attached to the character.
         anim = GetComponent<Animator>();
+
     }
 
     void Update() {
