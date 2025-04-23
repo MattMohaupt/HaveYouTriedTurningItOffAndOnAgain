@@ -18,6 +18,8 @@ public class GameInfoManeger : MonoBehaviour
     private float currentTime;
     private bool isRunning = true;
 
+    public AudioSource addMoney;
+
     void Start()
     {
         currentTime = totalTime;
@@ -60,6 +62,7 @@ public class GameInfoManeger : MonoBehaviour
 
     public void AddMoney(int amount)
     {
+        addMoney.Play();
         money += amount;
         UpdateMoneyUI();
     }
