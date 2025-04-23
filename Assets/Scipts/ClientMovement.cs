@@ -88,6 +88,7 @@ public class ClientMovement : MonoBehaviour
 
     public void StartLeaving()
     {
+        Destroy(droppedPC);
         currentState = ClientState.Leaving;
         SetTarget(spawnPoint.position);
         queueManager.RemoveClient(this);
@@ -108,7 +109,7 @@ public class ClientMovement : MonoBehaviour
     {
         if (brokenPCPrefab != null)
         {
-            Vector3 dropPosition = transform.position + transform.forward * 1.5f;
+            Vector3 dropPosition = transform.position + transform.forward * 5f;
             droppedPC = Instantiate(brokenPCPrefab, dropPosition, Quaternion.identity);
             
             Debug.Log($"Spawned PC: {droppedPC.name} at {dropPosition}");
