@@ -60,6 +60,8 @@ Sound Design:
 
 Sounds to put into our game:
 	-Background music (approved)
+	-Title Screen music (approved)
+	-Credits Screen music (approved)
 	-Walking (rejected)
 	-Doorbell (rejected)
 	-Fixing computer (approved)
@@ -68,11 +70,20 @@ Sounds to put into our game:
 	-Wrong tool usage (approved)
 	-Score Screen (approved)
 
+Sources:
+	Background Music - Hamster Haven by Aila Scott
+	Sound Effect by lubecin123 from Pixabay
+	Sound Effect by Kuzu Voorhees from Pixabay
+	Sound Effect by Driken Stan from Pixabay
+	Sound Effect by Kuzu Voorhees from Pixabay
+	Sound Effect by Shagor Miah from Pixabay
+	
+
 	We decided to reject the walking and doorbell sounds because they became too repetitive as the level went on and didn’t really add much to the game. For the sounds we approved, many of them were approved because they let the player know whether or not they are playing the game correctly
 
 
 Gameplay:
-	The game is only a minute 30 so the game is played at a high stress level needing to use quick snapshot decisions in order to maximize profit. The winding area map forces users to move around the maze like structure. The fact that NPC's will remove their pc's with not completed within 30 seconds further adds to the stress of the game as each pc is needed to be fixed quickly and efficiently.
+	The game is only a minute 30 so the game is played at a high stress level needing to use quick snapshot decisions in order to maximize profit. The winding area map forces users to move around the maze like structure. The fact that NPC's will remove their pc's with not completed within 30 seconds further adds to the stress of the game as each pc is needed to be fixed quickly and efficiently. In order to fix the pc's they need to use the tools that are on the opposite side of the map and use the correct tool for the job.
 
 
 
