@@ -3,10 +3,12 @@ using UnityEngine;
 public class BackgroundMusic : MonoBehaviour
 {
     private AudioSource audioSource;
+    private GameObject currentUI;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        PlayMusic();
+        currentUI = GetComponent<GameObject>();
+        // PlayMusic();
     }
 
     public void PlayMusic()
@@ -24,4 +26,13 @@ public class BackgroundMusic : MonoBehaviour
       audioSource.Stop();
     }
   }
+
+  // void Update() {
+  //   if (currentUI.activeSelf == true) {
+  //     PlayMusic();
+  //   }
+  //   else {
+  //     StopMusic();
+  //   }
+  // }
 }
