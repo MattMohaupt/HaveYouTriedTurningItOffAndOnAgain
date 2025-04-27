@@ -8,7 +8,9 @@ public class ClientSpawner : MonoBehaviour
     public float spawnInterval = 5f;
     public int limit = 10;
 
-    public AudioSource newClient;
+    public AudioSource outOfTime;
+
+    private bool atLimit;
 
     private float timer = 0f;
 
@@ -17,11 +19,17 @@ public class ClientSpawner : MonoBehaviour
 
     void Start()
     {
+        atLimit = false;
         SpawnClient();
     }
 
     void Update()
     {
+        if (queueManager.GetClientCount() == limit) {
+            atLimit = true;
+        }
+
+
         if (queueManager.GetClientCount() < limit)
         {
             timer += Time.deltaTime;
@@ -68,8 +76,5 @@ public class ClientSpawner : MonoBehaviour
         // Add to queue
         queueManager.AddClient(clientMovement);
         client.name = "Client_" + queueManager.GetClientCount();
-
-        // play sound to indicate there's a new client
-        newClient.Play();
     }
 }

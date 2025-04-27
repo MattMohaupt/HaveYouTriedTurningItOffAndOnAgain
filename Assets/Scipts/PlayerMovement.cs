@@ -16,8 +16,9 @@ public class PlayerMovement : NetworkBehaviour
     public float mouseSensitivity = 3f;
 
     public AudioSource startComputerFix;
-
     public AudioSource completeComputerFix;
+
+    public AudioSource wrongItem;
 
     // create a list of colors
     public List<Color> colors = new List<Color>();
@@ -276,7 +277,7 @@ public class PlayerMovement : NetworkBehaviour
     {
         Debug.Log("--- STARTING INTERACTION CHECK ---");
         Debug.Log($"Held object: {(heldObject ? heldObject.name : "null")}");
-        startComputerFix.Play();
+        
         
         Collider[] colliders = Physics.OverlapSphere(pickupPoint.position, pickupRadius);
         Debug.Log($"Found {colliders.Length} colliders in radius");
@@ -300,18 +301,23 @@ public class PlayerMovement : NetworkBehaviour
                     
                     if (correctCombo)
                     {
-                        startComputerFix.Stop();
-                        completeComputerFix.Play();
+                        startComputerFix.Play();
+                        
                         Debug.Log("Fixing computer...");
                         canMove = false;
                         await Task.Delay(2000);
                         
                         computer.FixComputer();
+                        startComputerFix.Stop();
+                        completeComputerFix.Play();
                         // Destroy(heldObject);
                         // heldObject = null;
                         DropObject();
                         canMove = true;
                         return;
+                    }
+                    else {
+                        wrongItem.Play();
                     }
                 }
                 else
