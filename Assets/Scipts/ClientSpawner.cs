@@ -8,7 +8,7 @@ public class ClientSpawner : MonoBehaviour
     public float spawnInterval = 5f;
     public int limit = 10;
 
-    public AudioSource outOfTime;
+    // public AudioSource outOfTime;
 
     private bool atLimit;
 

@@ -25,6 +25,8 @@ public class ClientMovement : MonoBehaviour
     private Transform spawnPoint;
     private ClientQueueManager queueManager;
 
+    public AudioSource outOfTime;
+
     void Update()
     {
         switch (currentState)
@@ -44,6 +46,7 @@ public class ClientMovement : MonoBehaviour
                 waitTimer += Time.deltaTime;
                 if (waitTimer >= waitDuration && queueManager.GetFirstClient() == this)
                 {
+                    outOfTime.Play();
                     StartLeaving();
                 }
                 break;
