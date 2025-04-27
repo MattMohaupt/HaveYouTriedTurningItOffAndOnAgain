@@ -9,8 +9,11 @@ public class EndingScript : MonoBehaviour
     [SerializeField] private Button rePlay_btn;
     [SerializeField] private Button quit_btn;
 
+    public AudioSource applause;
+
     void Start()
     {
+        applause.Play();
         
         rePlay_btn.onClick.AddListener(() =>
         {

@@ -21480,6 +21480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rePlay_btn: {fileID: 1879922970}
   quit_btn: {fileID: 1504861756}
+  applause: {fileID: 746124231}
 --- !u!1001 &2117708756
 PrefabInstance:
   m_ObjectHideFlags: 0

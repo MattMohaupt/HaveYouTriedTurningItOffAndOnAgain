@@ -13,8 +13,11 @@ public class TitleManeger : MonoBehaviour
     [SerializeField] private GameObject creditUI;
     [SerializeField] private GameObject intructionUI;
 
+    public MenuMusic music;
+
     void Start()
     {
+        // music.PlayMusic();
 
         play_btn.onClick.AddListener(() =>
         {
