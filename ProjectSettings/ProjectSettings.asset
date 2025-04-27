@@ -916,11 +916,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 4e1a03cf-c387-4b65-bf57-06c516ba6af2
+  cloudProjectId: f2a600a0-e114-476f-a01a-a3e0889b69e9
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: networkingdemo
-  organizationId: mattmohaupt
+  projectName: HaveYouTriedTurningItOffAndOnAgain
+  organizationId: msant22
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
