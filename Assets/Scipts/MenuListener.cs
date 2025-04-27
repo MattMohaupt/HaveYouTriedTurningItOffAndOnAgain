@@ -6,6 +6,8 @@ public class MenuListener : MonoBehaviour
 
     public AudioListener listen;
     public GameObject StartingUI;
+    public GameObject Credits;
+    public GameObject Instructions;
     void Start()
     {
         listen = GetComponent<AudioListener>();
@@ -27,7 +29,7 @@ public class MenuListener : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (StartingUI.activeSelf == true) {
+        if (StartingUI.activeSelf || Credits.activeSelf || Instructions.activeSelf) {
             On();
         }
         else {
