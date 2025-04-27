@@ -3877,7 +3877,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355697743}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bb59483c1abec4f41881b66f9c8a09d5, type: 3}
@@ -12181,7 +12181,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fa227dc498776a741a92f33cb9bb205e, type: 3}
   m_Resource: {fileID: 8300000, guid: fa227dc498776a741a92f33cb9bb205e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -14742,8 +14742,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 1409221309}
   spawnInterval: 5
   limit: 5
-  newClient: {fileID: 520085672}
-  outOfTime: {fileID: 0}
+  outOfTime: {fileID: 1149332316}
   brokenPCHW: {fileID: 6879104996545860497, guid: c91cb5e6d836f4d4d973b6ddf2ce5c47, type: 3}
   brokenPCSW: {fileID: 878570504113555126, guid: 8d6ca3243e5d75544a8f4a69fd3b5c42, type: 3}
 --- !u!4 &1409221309
