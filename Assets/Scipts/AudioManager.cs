@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour
     public BackgroundMusic gameMusic;
     public EndMusic endMusic;
 
-    private int activeMusic = 0;    // keeps track of which music is active
 
     // Singleton instance.
 	public static AudioManager Instance = null;
@@ -42,25 +41,22 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (menuUI.activeSelf && activeMusic != 1) {
+        if (menuUI.activeSelf) {
             Debug.Log("playing start music");
-            activeMusic = 1;
             startMusic.PlayMusic();
             gameMusic.StopMusic();
             endMusic.StopMusic();
         }
 
-        if (currentUI.activeSelf && activeMusic != 2) {
+        if (currentUI.activeSelf) {
             Debug.Log("playing game music");
-            activeMusic = 2;
             startMusic.StopMusic();
             gameMusic.PlayMusic();
             endMusic.StopMusic();
         }
 
-        if (resultUI.activeSelf && activeMusic != 3) {
+        if (resultUI.activeSelf) {
             Debug.Log("playing end music");
-            activeMusic = 3;
             startMusic.StopMusic();
             gameMusic.StopMusic();
             endMusic.PlayMusic();
