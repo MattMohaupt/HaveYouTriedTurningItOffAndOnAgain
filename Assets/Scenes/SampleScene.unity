@@ -13050,6 +13050,7 @@ MonoBehaviour:
   joinUI: {fileID: 722677505}
   creditUI: {fileID: 410359304}
   intructionUI: {fileID: 1534020284}
+  music: {fileID: 0}
 --- !u!1 &1274260961
 GameObject:
   m_ObjectHideFlags: 0
@@ -20390,10 +20391,23 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Title Screen - ChatGPT (Aprill 22 version)
 
-    Background Music - Aila
-    Scott
+    Background Music - Hamster
+    Haven by Aila Scott
 
-    Assets - Mobile Power Ups Free Vol.1
+    Sound Effect by lubecin123 from Pixabay
+
+    Sound Effect
+    by Kuzu Voorhees from Pixabay
+
+    Sound Effect by Driken Stan from Pixabay
+
+    Sound
+    Effect by Kuzu Voorhees from Pixabay
+
+    Sound Effect by Shagor Miah from Pixabay
+
+    Assets
+    - Mobile Power Ups Free Vol.1
 
     Assets - LowPolyOfficeProps_LITE
 
