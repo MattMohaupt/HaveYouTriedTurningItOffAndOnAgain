@@ -18,7 +18,7 @@ How to play:
 		- F key to interact with interactable object
 
 	Objective:
-		To make as much money as possible before the minute 30 timer is up. You need to fix the pcs and that will give you $100 per pc fixed. Red pcs have hardware related issues so they need to be interacted with while holding the wrench&screw, the blue pcs have software related issues so they need to be interacted with while holding the battery.
+		To make as much money as possible before the timer is up. You need to fix the PCs, and it will give you $100 per pc fixed. Red PCs have hardware related issues so they need to be interacted with the wrench & screw, whereas the blue PCs have software related issues so they need to be interacted with the battery.
 
 
 UI Design:
@@ -59,9 +59,9 @@ Sound Design:
 			Happens after the current level 
 
 Sounds to put into our game:
-	-Background music (approved)
-	-Title Screen music (approved)
-	-Credits Screen music (approved)
+	-Gameplay Background music (approved)
+	-Title Screen Background music (approved)
+	-Result Screen Background music (approved)
 	-Walking (rejected)
 	-Doorbell (rejected)
 	-Fixing computer (approved)
@@ -83,7 +83,7 @@ Sources:
 
 
 Gameplay:
-	The game is only a minute 30 so the game is played at a high stress level needing to use quick snapshot decisions in order to maximize profit. The winding area map forces users to move around the maze like structure. The fact that NPC's will remove their pc's with not completed within 30 seconds further adds to the stress of the game as each pc is needed to be fixed quickly and efficiently. In order to fix the pc's they need to use the tools that are on the opposite side of the map and use the correct tool for the job.
+	The game is only a minute and 30 seconds so the game is played at a high stress level needing to use quick snapshot decisions in order to maximize profit. The winding area map forces users to move around the maze like structure. The fact that NPC's will remove their PC's with not completed within 30 seconds further adds to the stress of the game as each PC is needed to be fixed quickly and efficiently. In order to fix the PC's they need to use the tools that are on the opposite side of the map and use the correct tool for the job.
 
 
 
