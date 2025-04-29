@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 902214cb60a326f40a17e2bb0e398ff7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 28173
+  packageName: Lighting Generator
+  packageVersion: Version 1.0
+  assetPath: Assets/Prop/Lighting Generator/Materials/PRP_LightingGenerator_01_DM.mat
+  uploadId: 47646

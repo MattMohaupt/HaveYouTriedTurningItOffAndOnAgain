@@ -325,6 +325,7 @@ MonoBehaviour:
   canMove: 1
   audioListener: {fileID: 4929820634659766398}
   playerCamera: {fileID: 5216914485926073765}
+  lightManager: {fileID: 0}
 --- !u!114 &606811382801918025
 MonoBehaviour:
   m_ObjectHideFlags: 0
