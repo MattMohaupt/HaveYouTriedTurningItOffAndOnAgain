@@ -64,6 +64,11 @@ public class GameInfoManeger : MonoBehaviour
         UpdateMoneyUI();
     }
 
+    public void SubtractMoney(int amount){
+        money -= amount;
+        UpdateMoneyUI();
+    }
+
     void Awake()
     {
         if (instance == null)

@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     public StartMusic startMusic;
     public BackgroundMusic gameMusic;
     public EndMusic endMusic;
+    public GameObject sounds;
+    public AudioSource leaving;
 
     void Start() {
         
@@ -24,6 +26,14 @@ public class AudioManager : MonoBehaviour
             startMusic.PlayMusic();
             gameMusic.StopMusic();
             endMusic.StopMusic();
+
+            if (sounds.activeSelf) {
+                sounds.SetActive(false);
+            }
+
+            // if (leaving.enabled) {
+            //     leaving.enabled = false;
+            // }
         }
 
         if (currentUI.activeSelf) {
@@ -31,6 +41,14 @@ public class AudioManager : MonoBehaviour
             startMusic.StopMusic();
             gameMusic.PlayMusic();
             endMusic.StopMusic();
+
+            if (!sounds.activeSelf) {
+                sounds.SetActive(true);
+            }
+
+            // if (!leaving.enabled) {
+            //     leaving.enabled = true;
+            // }
         }
 
         if (resultUI.activeSelf) {
@@ -38,6 +56,14 @@ public class AudioManager : MonoBehaviour
             startMusic.StopMusic();
             gameMusic.StopMusic();
             endMusic.PlayMusic();
+
+            if (sounds.activeSelf) {
+                sounds.SetActive(false);
+            }
+
+            // if (leaving.enabled) {
+            //     leaving.enabled = false;
+            // }
         }
     }
 }

@@ -20,6 +20,8 @@ public class ClientMovement : MonoBehaviour
     [HideInInspector] public ClientState currentState = ClientState.WalkingToQueue;
     [HideInInspector] public float waitTimer = 0f;
     [HideInInspector] public int issue = 0;
+
+    public int penaltyamount = 50;
     
     private Vector3 targetPosition;
     private Transform spawnPoint;
@@ -47,6 +49,7 @@ public class ClientMovement : MonoBehaviour
                 if (waitTimer >= waitDuration && queueManager.GetFirstClient() == this)
                 {
                     outOfTime.Play();
+                    GameInfoManeger.instance.SubtractMoney(penaltyamount);
                     StartLeaving();
                 }
                 break;

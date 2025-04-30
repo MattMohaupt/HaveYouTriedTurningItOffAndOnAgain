@@ -21866,10 +21866,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Title Screen - ChatGPT (Aprill 22 version)\nStart Screen Miusic - Pause-Save
     Menu by LudoLoon Studio\nBackground Music - Hamster Haven by Aila Scott\nEnding
-    Screen Music - Make it Work! by Aila Scott \nSound Effect - lubecin123, Kuzu
-    Voorhees, Driken Stan, Kuzu Voorhees, Shagor Miah from Pixabay\nAssets - Mobile
-    Power Ups Free Vol.1, LowPolyOfficeProps_LITE, Melon's Low Poly Office, Industrial
-    Models, Lighting Generator, and Low Poly Storage Pack"
+    Screen Music - Make it Work! by Aila Scott \nSound Effects - lubecin123, Kuzu
+    Voorhees, Driken Stan, Kuzu Voorhees, Shagor Miah, freesound_community from Pixabay\nAssets
+    - Mobile Power Ups Free Vol.1, LowPolyOfficeProps_LITE, Melon's Low Poly Office,
+    Industrial Models, Lighting Generator, and Low Poly Storage Pack"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
