@@ -8,7 +8,7 @@ Matthew Mohaupt, Scott Hong, MaryJo Santos
 
 How to play:
 
-	Controls:
+Controls:
 		- W key to move forward
 		- S key to move backwards
 		- A key to strafe left
@@ -17,10 +17,12 @@ How to play:
 		- E key to pick up a carriable object
 		- F key to interact with interactable object
 
-	Objective:
-		To make as much money as possible before the timer is up. You need to fix the PCs, and it will give you $100 per pc fixed. Red PCs have hardware related issues so they need to be interacted with the wrench & screw, whereas the blue PCs have software related issues so they need to be interacted with the battery.
+
+Game Instruction:
+	To make as much money as possible before the timer is up. You need to fix the PCs, and it will give you $100 per pc fixed. Red PCs have hardware related issues so they need to be interacted with the wrench & screw, whereas the blue PCs have software related issues so they need to be interacted with the battery. Also, blackout occurs at regular intervals. During blackout, you can't fix any computers. So, you will have to interact with light generator to turn light on and keep resolving PC issues. 
 
 
+Beta feedback and final retrospect:
 Changes from Beta:
 	-Increased timer from 100 seconds to 150 seconds
 	-Made items despawn after use and respawn back in their original spots
