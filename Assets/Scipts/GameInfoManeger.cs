@@ -8,7 +8,7 @@ public class GameInfoManeger : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText; 
     [SerializeField] private TextMeshProUGUI moneyText;
     [SerializeField] private TextMeshProUGUI resultText; 
-    private int money = 100;
+    private int money = 0;
 
     [SerializeField] private GameObject gameUI;
     [SerializeField] private GameObject resultUI;

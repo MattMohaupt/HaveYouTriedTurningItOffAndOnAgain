@@ -320,6 +320,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   holdPoint: {fileID: 8187263012222883822}
+  batteryPoint: {fileID: 3342182566832091751, guid: 3ad18ce71a1ec2c46aadeb63f00c501d, type: 3}
+  toolsPoint: {fileID: 653924084469061196, guid: 7b9628749b4feb54db5c67dc1ed17df7, type: 3}
   spawnedPrefab: {fileID: 5081360379083264405, guid: 7ae6246592a9eb64882e22c2720656dd, type: 3}
   fixedpc: {fileID: 6261253163051834042, guid: dd1e0f46e3b5d674f800010fdc57e887, type: 3}
   cannon: {fileID: 9090321652125285080}

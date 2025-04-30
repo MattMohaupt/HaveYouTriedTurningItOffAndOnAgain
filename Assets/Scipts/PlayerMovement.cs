@@ -26,6 +26,8 @@ public class PlayerMovement : NetworkBehaviour
 
     private GameObject heldObject;
     [SerializeField] private Transform holdPoint;
+    [SerializeField] private GameObject batteryPoint;
+    [SerializeField] private GameObject toolsPoint;
     [SerializeField] private GameObject spawnedPrefab;
     private GameObject instantiatedPrefab;
 
@@ -157,19 +159,27 @@ public class PlayerMovement : NetworkBehaviour
     }
 
     private void DropObject()
-    {
-        if (heldObject != null)
-        {
-            Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-            rb.useGravity = true;
-            rb.isKinematic = false;
-            heldObject.GetComponent<Collider>().enabled = true;
-
-            heldObject.transform.SetParent(null);
-            rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
-
-            heldObject = null;
+    {   
+        if (heldObject == null) {
+            return;
         }
+
+        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        heldObject.GetComponent<Collider>().enabled = true;
+
+        heldObject.transform.SetParent(null);
+        rb.AddForce(transform.forward * 2f, ForceMode.Impulse);
+
+        // if (fixedDrop && respwanPoint != null)
+        // {
+        //     heldObject.transform.position = respawnPoint.position;
+        //     heldObject.transform.rotation = respawnPoint.rotation;
+        // }
+
+        heldObject = null;
+
     }
 
     private async Task TryInteraction(GameObject heldobject = null)
@@ -196,7 +206,16 @@ public class PlayerMovement : NetworkBehaviour
                         computer.FixComputer();
                         startComputerFix.Stop();
                         completeComputerFix.Play();
+                        GameObject tool = heldObject;
                         DropObject();
+                        if (computer.issueType == 0) {
+                            tool.transform.position = toolsPoint.transform.position;
+                            tool.transform.rotation = toolsPoint.transform.rotation;
+                        } else {
+                            tool.transform.position = batteryPoint.transform.position;
+                            tool.transform.rotation = batteryPoint.transform.rotation;
+                        }
+
                         canMove = true;
                         return;
                     }
