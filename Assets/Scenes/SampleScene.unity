@@ -3316,7 +3316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035ee187c501d2f4899c9f2390bb03da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 100
+  totalTime: 150
   timerText: {fileID: 889258333}
   moneyText: {fileID: 639188198}
   resultText: {fileID: 698072732}
@@ -10612,6 +10612,36 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908076931}
   m_Enabled: 1
+--- !u!1 &950472196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2388987973919384984, guid: 4f788fc24661d0d4ebbac36d850c2f2a, type: 3}
+  m_PrefabInstance: {fileID: 7524326995812193781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &950472204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950472196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2319199078
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &952100563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14994,6 +15024,36 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 8.606894, z: 0.60746926}
   m_Center: {x: 0, y: 4.2883606, z: 0.6997446}
+--- !u!1 &1375663176 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6069454332560577617, guid: c54473e4e0a58c945bbfbafe0e159083, type: 3}
+  m_PrefabInstance: {fileID: 4654166740560130320}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1375663184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375663176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2042747025
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &1379552779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23245,7 +23305,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6069454332560577617, guid: c54473e4e0a58c945bbfbafe0e159083, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 1375663184}
   m_SourcePrefab: {fileID: 100100000, guid: c54473e4e0a58c945bbfbafe0e159083, type: 3}
 --- !u!1001 &7524326995812193781
 PrefabInstance:
@@ -23302,7 +23365,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2388987973919384984, guid: 4f788fc24661d0d4ebbac36d850c2f2a, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 950472204}
   m_SourcePrefab: {fileID: 100100000, guid: 4f788fc24661d0d4ebbac36d850c2f2a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
