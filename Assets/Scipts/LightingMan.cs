@@ -8,6 +8,8 @@ public class LightingMan : MonoBehaviour
     private bool inGracePeriod = false;
     private Coroutine toggleRoutine;
     private float timeUntilNextToggle;
+    public AudioSource generatorOff;
+    public AudioSource electricity;
 
     private void Start()
     {
@@ -23,6 +25,14 @@ public class LightingMan : MonoBehaviour
             if (!inGracePeriod && timeUntilNextToggle > 0)
             {
                 timeUntilNextToggle -= Time.deltaTime;
+
+                if (timeUntilNextToggle < 3) {
+                    generatorOff.Play();
+                }
+                
+                if (timeUntilNextToggle < 6 && timeUntilNextToggle > 2) {
+                    electricity.Play();
+                }
                 
                 if (timeUntilNextToggle <= 0)
                 {
