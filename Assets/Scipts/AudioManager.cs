@@ -20,21 +20,21 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         if (menuUI.activeSelf) {
-            Debug.Log("playing start music");
+            // Debug.Log("playing start music");
             startMusic.PlayMusic();
             gameMusic.StopMusic();
             endMusic.StopMusic();
         }
 
         if (currentUI.activeSelf) {
-            Debug.Log("playing game music");
+            // Debug.Log("playing game music");
             startMusic.StopMusic();
             gameMusic.PlayMusic();
             endMusic.StopMusic();
         }
 
         if (resultUI.activeSelf) {
-            Debug.Log("playing end music");
+            // Debug.Log("playing end music");
             startMusic.StopMusic();
             gameMusic.StopMusic();
             endMusic.PlayMusic();

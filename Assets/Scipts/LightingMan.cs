@@ -4,6 +4,7 @@ using UnityEngine;
 public class LightingMan : MonoBehaviour
 {
     [SerializeField] public Light directionalLight;
+    [SerializeField] private GameObject warningText; 
     public bool lightsAreOff = false;
     private bool inGracePeriod = false;
     private Coroutine toggleRoutine;
@@ -23,13 +24,20 @@ public class LightingMan : MonoBehaviour
             if (!inGracePeriod && timeUntilNextToggle > 0)
             {
                 timeUntilNextToggle -= Time.deltaTime;
+
+                if (timeUntilNextToggle <= 5)
+                {
+                    warningText.SetActive(true);
+                }
                 
                 if (timeUntilNextToggle <= 0)
                 {
+                    warningText.SetActive(false);
                     if (directionalLight != null)
                     {
                         directionalLight.enabled = false;
                         lightsAreOff = true;
+                        inGracePeriod = true;
                     }
                     // Reset timer for next toggle
                     timeUntilNextToggle = 10f + Random.Range(5f, 15f);
@@ -45,6 +53,7 @@ public class LightingMan : MonoBehaviour
         {
             directionalLight.enabled = true;
             lightsAreOff = false;
+            inGracePeriod = false;
             
             // Start grace period and reset timer
             StartCoroutine(GracePeriodRoutine());
