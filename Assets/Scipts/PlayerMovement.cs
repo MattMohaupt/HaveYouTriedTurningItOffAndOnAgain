@@ -217,6 +217,7 @@ public class PlayerMovement : NetworkBehaviour
                     if (lightManager.lightsAreOff)
                     {
                         canMove = false;
+                        fixingGenerator.Play();
                         await Task.Delay(2000);
                         Debug.Log("Lights are OFF. Turning ON!");
                         lightManager.TurnLightsOn();

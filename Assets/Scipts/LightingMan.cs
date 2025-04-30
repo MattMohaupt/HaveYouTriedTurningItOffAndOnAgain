@@ -9,6 +9,8 @@ public class LightingMan : MonoBehaviour
     private bool inGracePeriod = false;
     private Coroutine toggleRoutine;
     private float timeUntilNextToggle;
+    public AudioSource generatorOff;
+    public AudioSource electricity;
 
     private void Start()
     {
@@ -25,8 +27,13 @@ public class LightingMan : MonoBehaviour
             {
                 timeUntilNextToggle -= Time.deltaTime;
 
+                if (timeUntilNextToggle < 3) {
+                    generatorOff.Play();
+                }
+                
                 if (timeUntilNextToggle <= 5)
                 {
+                    electricity.Play();
                     warningText.SetActive(true);
                 }
                 
